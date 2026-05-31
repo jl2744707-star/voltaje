@@ -1,0 +1,24 @@
+import "dotenv/config.js";
+
+const config = {
+  app: {
+    port: process.env.PORT || 5000,
+  },
+  jwt: {
+    secret: process.env.JWT_SECRET,
+  },
+  mysql: {
+    host: process.env.MYSQL_HOST || "aaa",
+    user: process.env.MYSQL_USER || "wakawaka",
+    password: process.env.MYSQL_PASSWORD || "",
+    database: process.env.MYSQL_DB || "ninguna",
+    port: process.env.MYSQL_PORT || 3306,
+  },
+  cloudinary: {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  },
+};
+
+export default config;

@@ -1,0 +1,512 @@
+/* =====================================================
+   CONTENEDOR
+===================================================== */
+
+.orders-page-container {
+    max-width: 1100px;
+
+    margin: 35px auto;
+    padding: 0 20px;
+}
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.orders-header-box {
+    margin-bottom: 30px;
+}
+
+.orders-header-box h2 {
+    margin-bottom: 6px;
+
+    color: #111827;
+
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.orders-subtitle {
+    color: #64748b;
+    font-size: 0.95rem;
+}
+
+/* =====================================================
+   FILTROS
+===================================================== */
+
+.orders-filter-bar {
+    display: flex;
+    gap: 12px;
+
+    overflow-x: auto;
+
+    padding-bottom: 8px;
+    margin-bottom: 28px;
+}
+
+.orders-filter-bar::-webkit-scrollbar {
+    height: 6px;
+}
+
+.orders-filter-bar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+.filter-tab-btn {
+    padding: 10px 18px;
+
+    border-radius: 30px;
+    border: 1px solid #dcdfe4;
+
+    background: white;
+
+    color: #4b5563;
+
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    white-space: nowrap;
+
+    transition:
+        all 0.2s ease;
+}
+
+.filter-tab-btn:hover {
+    background: #f8fafc;
+    transform: translateY(-1px);
+}
+
+.filter-tab-btn.active {
+    background:
+        linear-gradient(135deg,
+            #2563eb,
+            #1d4ed8);
+
+    color: white;
+
+    border-color: transparent;
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+/* =====================================================
+   GRID LISTADO
+===================================================== */
+
+.orders-list-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+/* =====================================================
+   TARJETA
+===================================================== */
+
+.order-card {
+    background: white;
+
+    border-radius: 22px;
+
+    padding: 24px;
+
+    border-left: 6px solid #d1d5db;
+
+    box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.05);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.order-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 18px 35px rgba(0, 0, 0, 0.08);
+}
+
+/* =====================================================
+   COLORES POR ESTADO
+===================================================== */
+
+.order-card.status-border-Pendiente {
+    border-left-color: #f59e0b;
+}
+
+.order-card.status-border-Enviado {
+    border-left-color: #3b82f6;
+}
+
+.order-card.status-border-Entregado {
+    border-left-color: #22c55e;
+}
+
+.order-card.status-border-Cancelado {
+    border-left-color: #ef4444;
+}
+
+/* =====================================================
+   HEADER TARJETA
+===================================================== */
+
+.order-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    border-bottom: 1px solid #eef2f7;
+
+    padding-bottom: 15px;
+    margin-bottom: 16px;
+}
+
+.order-number-tag {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.order-date-txt {
+    margin-top: 4px;
+
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+/* =====================================================
+   SELECT ESTADO ADMIN
+===================================================== */
+
+.order-status-select {
+    padding: 8px 14px;
+
+    border-radius: 12px;
+    border: none;
+
+    font-weight: bold;
+    font-size: 0.85rem;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.order-status-select:hover {
+    transform: scale(1.02);
+}
+
+.order-status-select.select-Pendiente {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.order-status-select.select-Enviado {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.order-status-select.select-Entregado {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.order-status-select.select-Cancelado {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* =====================================================
+   BADGES CLIENTE
+===================================================== */
+
+.order-status-badge {
+    padding: 6px 14px;
+
+    border-radius: 30px;
+
+    font-size: 0.82rem;
+    font-weight: bold;
+}
+
+.order-status-badge.status-Pendiente {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.order-status-badge.status-Enviado {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.order-status-badge.status-Entregado {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.order-status-badge.status-Cancelado {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* =====================================================
+   SHIPPING
+===================================================== */
+
+.order-shipping-section {
+    background: #f8fafc;
+
+    padding: 14px;
+
+    border-radius: 16px;
+
+    font-size: 0.92rem;
+    color: #475569;
+
+    margin-bottom: 18px;
+}
+
+.order-shipping-section p {
+    margin: 6px 0 0 0;
+}
+
+/* =====================================================
+   ITEMS
+===================================================== */
+
+.order-items-detail-box h4 {
+    margin-bottom: 12px;
+
+    color: #64748b;
+
+    font-size: 0.9rem;
+}
+
+.order-items-loop {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.order-single-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 0;
+}
+
+.item-row-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.order-item-img {
+    width: 50px;
+    height: 50px;
+
+    object-fit: cover;
+
+    border-radius: 14px;
+
+    border: 1px solid #e5e7eb;
+}
+
+.order-item-no-img {
+    width: 50px;
+    height: 50px;
+
+    background: #f1f5f9;
+
+    border-radius: 14px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-item-name {
+    margin: 0;
+
+    font-weight: 600;
+    color: #1f2937;
+}
+
+.order-item-brand {
+    margin-top: 3px;
+
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.item-row-right {
+    display: flex;
+    gap: 25px;
+
+    font-weight: 500;
+
+    color: #1f2937;
+}
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.order-card-footer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 15px;
+
+    border-top: 1px solid #eef2f7;
+
+    margin-top: 18px;
+    padding-top: 16px;
+}
+
+.order-total-price-text {
+    font-size: 1.35rem;
+    font-weight: bold;
+
+    color: #16a34a;
+}
+
+/* =====================================================
+   SIN ÓRDENES
+===================================================== */
+
+.no-orders-box {
+    background: white;
+
+    padding: 50px;
+
+    border-radius: 22px;
+
+    text-align: center;
+
+    color: #64748b;
+
+    border: 2px dashed #d1d5db;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.04);
+}
+
+/* =====================================================
+   DARK MODE
+===================================================== */
+
+@media (prefers-color-scheme: dark) {
+
+    body {
+        background: #0f1115;
+    }
+
+    .orders-header-box h2,
+    .order-number-tag,
+    .order-item-name,
+    .item-row-right {
+        color: white;
+    }
+
+    .orders-subtitle,
+    .order-item-brand,
+    .order-date-txt {
+        color: #9ca3af;
+    }
+
+    .filter-tab-btn,
+    .order-card,
+    .no-orders-box {
+        background: #1a1d24;
+        color: white;
+    }
+
+    .filter-tab-btn {
+        border-color: #2f3640;
+    }
+
+    .filter-tab-btn:hover {
+        background: #232833;
+    }
+
+    .order-card-header,
+    .order-card-footer {
+        border-color: #2c3440;
+    }
+
+    .order-shipping-section {
+        background: #232833;
+        color: #d1d5db;
+    }
+
+    .order-item-img {
+        border-color: #2c3440;
+    }
+
+    .order-item-no-img {
+        background: #232833;
+    }
+
+    .order-status-select {
+        border: none;
+    }
+
+    .no-orders-box {
+        border-color: #2c3440;
+    }
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 700px) {
+
+    .order-card {
+        padding: 18px;
+    }
+
+    .order-card-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .order-single-item-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .item-row-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .order-card-footer {
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 500px) {
+
+    .orders-header-box h2 {
+        font-size: 1.6rem;
+    }
+
+    .filter-tab-btn {
+        font-size: 0.82rem;
+        padding: 8px 14px;
+    }
+
+    .order-total-price-text {
+        font-size: 1.15rem;
+    }
+}
