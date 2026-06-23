@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrativo - Hospital Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+        }
+
+        .dashboard-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .dashboard-header {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .dashboard-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-title h1 {
+            color: #667eea;
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .dashboard-subtitle {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .stat-card.success {
+            border-left-color: #10b981;
+        }
+
+        .stat-card.warning {
+            border-left-color: #f59e0b;
+        }
+
+        .stat-card.danger {
+            border-left-color: #ef4444;
+        }
+
+        .stat-icon {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .stat-icon.success { color: #10b981; }
+        .stat-icon.warning { color: #f59e0b; }
+        .stat-icon.danger { color: #ef4444; }
+        .stat-icon.info { color: #667eea; }
+
+        .stat-value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .action-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            gap: 10px;
+        }
+
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .action-btn i {
+            font-size: 1.8em;
+        }
+
+        .turn-list {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .turn-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            background: #f9fafb;
+            margin-bottom: 10px;
+            border-radius: 8px;
+        }
+
+        .turn-info {
+            flex: 1;
+        }
+
+        .turn-patient {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 5px;
+        }
+
+        .turn-details {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        .turn-time {
+            background: #667eea;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            min-width: 100px;
+            text-align: center;
+        }
+
+        .turn-status {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-confirmed {
+            background: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-cancelled {
+            background: #fee2e2;
+            color: #7f1d1d;
+        }
+
+        .doctor-list {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .doctor-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            border-bottom: 1px solid #f0f0f0;
+            background: #f9fafb;
+            margin-bottom: 8px;
+            border-radius: 8px;
+        }
+
+        .doctor-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 1.3em;
+        }
+
+        .doctor-info {
+            flex: 1;
+        }
+
+        .doctor-name {
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 3px;
+        }
+
+        .doctor-specialty {
+            font-size: 0.9em;
+            color: #667eea;
+            font-weight: 500;
+        }
+
+        .doctor-status {
+            padding: 5px 12px;
+            background: #d1fae5;
+            color: #065f46;
+            border-radius: 6px;
+            font-size: 0.85em;
+            font-weight: 600;
+        }
+
+        .alerts-section {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .alert-item {
+            padding: 15px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .alert-item.info {
+            background: #e3f2fd;
+            border-left: 4px solid #1976d2;
+        }
+
+        .alert-item.warning {
+            background: #fff3e0;
+            border-left: 4px solid #f57c00;
+        }
+
+        .alert-item.success {
+            background: #e8f5e9;
+            border-left: 4px solid #388e3c;
+        }
+
+        .alert-item i {
+            font-size: 1.3em;
+        }
+
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- HEADER -->
+        <div class="dashboard-header">
+            <div class="dashboard-title">
+                <i class="fas fa-chart-line" style="color: #667eea; font-size: 2em;"></i>
+                <div>
+                    <h1>Dashboard Administrativo</h1>
+                    <p class="dashboard-subtitle">Resumen operativo del Hospital Central</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ESTADÍSTICAS PRINCIPALES -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <i class="fas fa-users stat-icon info"></i>
+                <div class="stat-value">1,248</div>
+                <div class="stat-label">Pacientes Registrados</div>
+            </div>
+
+            <div class="stat-card success">
+                <i class="fas fa-calendar-check stat-icon success"></i>
+                <div class="stat-value">34</div>
+                <div class="stat-label">Turnos Hoy</div>
+            </div>
+
+            <div class="stat-card">
+                <i class="fas fa-user-md stat-icon info"></i>
+                <div class="stat-value">47</div>
+                <div class="stat-label">Médicos Activos</div>
+            </div>
+
+            <div class="stat-card success">
+                <i class="fas fa-check-circle stat-icon success"></i>
+                <div class="stat-value">89%</div>
+                <div class="stat-label">Ocupación Camas</div>
+            </div>
+
+            <div class="stat-card warning">
+                <i class="fas fa-hourglass-end stat-icon warning"></i>
+                <div class="stat-value">12</div>
+                <div class="stat-label">Turnos en Espera</div>
+            </div>
+
+            <div class="stat-card danger">
+                <i class="fas fa-exclamation-triangle stat-icon danger"></i>
+                <div class="stat-value">3</div>
+                <div class="stat-label">Alertas Activas</div>
+            </div>
+        </div>
+
+        <!-- SECCIÓN DE ALERTAS -->
+        <div class="alerts-section">
+            <h3 style="color: #667eea; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-bell"></i> Alertas y Notificaciones
+            </h3>
+
+            <div class="alert-item warning">
+                <i class="fas fa-exclamation-circle"></i>
+                <div>
+                    <strong>Sala de Emergencias</strong> - Ocupación al 95%. Se recomienda revisar asignación de recursos.
+                </div>
+            </div>
+
+            <div class="alert-item info">
+                <i class="fas fa-info-circle"></i>
+                <div>
+                    <strong>Mantenimiento programado</strong> - El equipo de radiology estará en revisión mañana 14:00-16:00
+                </div>
+            </div>
+
+            <div class="alert-item success">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <strong>Medicamentos</strong> - Inventario actualizado. Stock óptimo en todas las áreas.
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTENIDO PRINCIPAL -->
+        <div class="content-grid">
+            <!-- TURNOS DE HOY -->
+            <div class="card">
+                <h2>
+                    <i class="fas fa-calendar-day"></i> Turnos de Hoy
+                </h2>
+                <div class="turn-list">
+                    <div class="turn-item">
+                        <div class="turn-info">
+                            <div class="turn-patient">Juan García</div>
+                            <div class="turn-details">Cardiología • Dr. López</div>
+                        </div>
+                        <div class="turn-time">08:30</div>
+                        <div class="turn-status status-confirmed">Confirmado</div>
+                    </div>
+
+                    <div class="turn-item">
+                        <div class="turn-info">
+                            <div class="turn-patient">María González</div>
+                            <div class="turn-details">Pediatría • Dra. García</div>
+                        </div>
+                        <div class="turn-time">09:15</div>
+                        <div class="turn-status status-confirmed">Confirmado</div>
+                    </div>
+
+                    <div class="turn-item">
+                        <div class="turn-info">
+                            <div class="turn-patient">Carlos López</div>
+                            <div class="turn-details">Traumatología • Dr. Rodríguez</div>
+                        </div>
+                        <div class="turn-time">10:00</div>
+                        <div class="turn-status status-pending">Pendiente</div>
+                    </div>
+
+                    <div class="turn-item">
+                        <div class="turn-info">
+                            <div class="turn-patient">Ana Martínez</div>
+                            <div class="turn-details">Oftalmología • Dra. Martínez</div>
+                        </div>
+                        <div class="turn-time">11:00</div>
+                        <div class="turn-status status-confirmed">Confirmado</div>
+                    </div>
+
+                    <div class="turn-item">
+                        <div class="turn-info">
+                            <div class="turn-patient">Roberto Silva</div>
+                            <div class="turn-details">Medicina General • Dr. López</div>
+                        </div>
+                        <div class="turn-time">14:30</div>
+                        <div class="turn-status status-confirmed">Confirmado</div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <a href="abm.html" class="action-btn" style="flex: 1; margin: 0;">
+                        <i class="fas fa-plus"></i> Nuevo Turno
+                    </a>
+                    <a href="abm.html" class="action-btn" style="flex: 1; margin: 0;">
+                        <i class="fas fa-list"></i> Ver Todos
+                    </a>
+                </div>
+            </div>
+
+            <!-- MÉDICOS EN SERVICIO -->
+            <div class="card">
+                <h2>
+                    <i class="fas fa-hospital-user"></i> Médicos en Servicio
+                </h2>
+                <div class="doctor-list">
+                    <div class="doctor-item">
+                        <div class="doctor-avatar">DL</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Dr. López</div>
+                            <div class="doctor-specialty">Cardiología</div>
+                        </div>
+                        <div class="doctor-status">En turno</div>
+                    </div>
+
+                    <div class="doctor-item">
+                        <div class="doctor-avatar">DG</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Dra. García</div>
+                            <div class="doctor-specialty">Pediatría</div>
+                        </div>
+                        <div class="doctor-status">En turno</div>
+                    </div>
+
+                    <div class="doctor-item">
+                        <div class="doctor-avatar">DR</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Dr. Rodríguez</div>
+                            <div class="doctor-specialty">Traumatología</div>
+                        </div>
+                        <div class="doctor-status">En turno</div>
+                    </div>
+
+                    <div class="doctor-item">
+                        <div class="doctor-avatar">DM</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Dra. Martínez</div>
+                            <div class="doctor-specialty">Oftalmología</div>
+                        </div>
+                        <div class="doctor-status">En turno</div>
+                    </div>
+
+                    <div class="doctor-item">
+                        <div class="doctor-avatar">DF</div>
+                        <div class="doctor-info">
+                            <div class="doctor-name">Dr. Fernández</div>
+                            <div class="doctor-specialty">Neurología</div>
+                        </div>
+                        <div style="padding: 5px 12px; background: #fee2e2; color: #7f1d1d; border-radius: 6px; font-size: 0.85em; font-weight: 600;">Descanso</div>
+                    </div>
+                </div>
+                <div style="margin-top: 15px; display: flex; gap: 10px;">
+                    <a href="registro.html" class="action-btn" style="flex: 1; margin: 0;">
+                        <i class="fas fa-user-plus"></i> Nuevo Médico
+                    </a>
+                    <a href="horarios.html" class="action-btn" style="flex: 1; margin: 0;">
+                        <i class="fas fa-calendar"></i> Horarios
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCIONES RÁPIDAS -->
+        <div class="card">
+            <h2>
+                <i class="fas fa-lightning-bolt"></i> Acciones Rápidas
+            </h2>
+            <div class="quick-actions">
+                <a href="abm.html" class="action-btn">
+                    <i class="fas fa-calendar-plus"></i> Crear Turno
+                </a>
+                <a href="registro.html" class="action-btn">
+                    <i class="fas fa-user-plus"></i> Registrar Médico
+                </a>
+                <a href="horarios.html" class="action-btn">
+                    <i class="fas fa-clock"></i> Horarios
+                </a>
+                <a href="materias.html" class="action-btn">
+                    <i class="fas fa-book-medical"></i> Especialidades
+                </a>
+                <a href="sueldo.html" class="action-btn">
+                    <i class="fas fa-chart-bar"></i> Reportes
+                </a>
+                <a href="faltas.html" class="action-btn">
+                    <i class="fas fa-history"></i> Historial
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

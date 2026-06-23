@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestionar Turnos - Hospital Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-calendar-check"></i> Gestión de Turnos</h2>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <span><strong>Sistema de Gestión de Turnos</strong> - Crea, modifica o cancela turnos médicos</span>
+            </div>
+
+            <!-- FORMULARIO DE NUEVO TURNO -->
+            <div style="background: #f8f9fa; padding: 25px; border-radius: 10px; margin-bottom: 30px;">
+                <h3 style="color: #667eea; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-plus-circle"></i> Crear Nuevo Turno
+                </h3>
+
+                <form>
+                    <!-- SECCIÓN: INFORMACIÓN DEL PACIENTE -->
+                    <fieldset style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <legend style="padding: 0 10px; color: #667eea; font-weight: 600;">
+                            <i class="fas fa-user"></i> Datos del Paciente
+                        </legend>
+                        <div class="grid grid-3">
+                            <div class="form-group">
+                                <label for="paciente_nombre"><i class="fas fa-user"></i> Nombre del Paciente</label>
+                                <input type="text" id="paciente_nombre" placeholder="Nombre completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="paciente_dni"><i class="fas fa-id-card"></i> DNI/Cédula</label>
+                                <input type="text" id="paciente_dni" placeholder="XX.XXX.XXX" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="paciente_telefo"><i class="fas fa-phone"></i> Teléfono</label>
+                                <input type="tel" id="paciente_telefo" placeholder="+54 11 XXXX-XXXX" required>
+                            </div>
+                        </div>
+                        <div class="grid grid-2">
+                            <div class="form-group">
+                                <label for="paciente_email"><i class="fas fa-envelope"></i> Email</label>
+                                <input type="email" id="paciente_email" placeholder="email@ejemplo.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="paciente_afialiacion"><i class="fas fa-building"></i> Obra Social/Cobertura</label>
+                                <select id="paciente_afialiacion">
+                                    <option>-- Selecciona --</option>
+                                    <option>OSDE</option>
+                                    <option>IOMA</option>
+                                    <option>Sura</option>
+                                    <option>Particular</option>
+                                </select>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                    <!-- SECCIÓN: DATOS DEL TURNO -->
+                    <fieldset style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <legend style="padding: 0 10px; color: #667eea; font-weight: 600;">
+                            <i class="fas fa-stethoscope"></i> Datos del Turno
+                        </legend>
+                        <div class="grid grid-3">
+                            <div class="form-group">
+                                <label for="especialidad"><i class="fas fa-stethoscope"></i> Especialidad</label>
+                                <select id="especialidad" required>
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="cardiologia">Cardiología</option>
+                                    <option value="pediatria">Pediatría</option>
+                                    <option value="dermatologia">Dermatología</option>
+                                    <option value="traumatologia">Traumatología</option>
+                                    <option value="oftalmologia">Oftalmología</option>
+                                    <option value="neurologia">Neurología</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="medico"><i class="fas fa-user-md"></i> Médico</label>
+                                <select id="medico" required>
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="1">Dr. López - Cardiología</option>
+                                    <option value="2">Dra. García - Pediatría</option>
+                                    <option value="3">Dr. Rodríguez - Traumatología</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo_consulta"><i class="fas fa-file-medical"></i> Tipo de Consulta</label>
+                                <select id="tipo_consulta" required>
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="primera">Primera Consulta</option>
+                                    <option value="seguimiento">Seguimiento</option>
+                                    <option value="emergencia">Emergencia</option>
+                                    <option value="control">Control</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="grid grid-3">
+                            <div class="form-group">
+                                <label for="fecha_turno"><i class="fas fa-calendar"></i> Fecha del Turno</label>
+                                <input type="date" id="fecha_turno" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="hora_turno"><i class="fas fa-clock"></i> Hora</label>
+                                <input type="time" id="hora_turno" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="duracion"><i class="fas fa-hourglass-half"></i> Duración (minutos)</label>
+                                <select id="duracion">
+                                    <option value="">-- Selecciona --</option>
+                                    <option value="15">15 minutos</option>
+                                    <option value="30">30 minutos</option>
+                                    <option value="45">45 minutos</option>
+                                    <option value="60">1 hora</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="motivo"><i class="fas fa-stethoscope"></i> Motivo de la Consulta</label>
+                            <textarea id="motivo" placeholder="Describe el motivo de la consulta" style="resize: vertical; min-height: 80px;"></textarea>
+                        </div>
+                    </fieldset>
+
+                    <!-- SECCIÓN: ESTADO -->
+                    <fieldset style="border: 1px solid #e2e8f0; padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+                        <legend style="padding: 0 10px; color: #667eea; font-weight: 600;">
+                            <i class="fas fa-flag"></i> Estado del Turno
+                        </legend>
+                        <div class="grid grid-3">
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="radio" name="estado" value="confirmado" checked>
+                                <span><strong>Confirmado</strong></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="radio" name="estado" value="pendiente">
+                                <span><strong>Pendiente</strong></span>
+                            </label>
+                            <label style="display: flex; align-items: center; gap: 10px; cursor: pointer;">
+                                <input type="radio" name="estado" value="tentativo">
+                                <span><strong>Tentativo</strong></span>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <!-- BOTONES -->
+                    <div class="button-group" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                        <button type="submit" class="btn-primary" style="width: 100%;">
+                            <i class="fas fa-save"></i> Crear Turno
+                        </button>
+                        <button type="reset" class="btn-secondary" style="width: 100%;">
+                            <i class="fas fa-redo"></i> Limpiar
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- BÚSQUEDA Y FILTROS -->
+            <div style="background: white; padding: 20px; border-radius: 10px; margin-bottom: 30px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <h3 style="color: #667eea; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+                    <i class="fas fa-search"></i> Buscar y Filtrar Turnos
+                </h3>
+                
+                <div class="grid grid-3">
+                    <div class="form-group">
+                        <label for="buscar_paciente"><i class="fas fa-user"></i> Paciente</label>
+                        <input type="text" id="buscar_paciente" placeholder="Nombre o DNI...">
+                    </div>
+                    <div class="form-group">
+                        <label for="buscar_fecha"><i class="fas fa-calendar"></i> Fecha</label>
+                        <input type="date" id="buscar_fecha">
+                    </div>
+                    <div class="form-group">
+                        <label for="buscar_estado"><i class="fas fa-filter"></i> Estado</label>
+                        <select id="buscar_estado">
+                            <option value="">-- Todos --</option>
+                            <option value="confirmado">Confirmado</option>
+                            <option value="pendiente">Pendiente</option>
+                            <option value="cancelado">Cancelado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button class="btn-primary">
+                    <i class="fas fa-search"></i> Buscar Turnos
+                </button>
+            </div>
+
+            <!-- TABLA DE TURNOS -->
+            <h3 style="color: #667eea; margin: 30px 0 20px 0; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-list"></i> Listado de Turnos (12 registros)
+            </h3>
+            
+            <div style="overflow-x: auto; background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1);">
+                <table style="width: 100%;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 15px;">ID</th>
+                            <th style="padding: 15px;">Paciente</th>
+                            <th style="padding: 15px;">DNI</th>
+                            <th style="padding: 15px;">Médico</th>
+                            <th style="padding: 15px;">Especialidad</th>
+                            <th style="padding: 15px;">Fecha</th>
+                            <th style="padding: 15px;">Hora</th>
+                            <th style="padding: 15px;">Estado</th>
+                            <th style="padding: 15px; text-align: center;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 15px;"><strong>#T001</strong></td>
+                            <td style="padding: 15px;">Juan García García</td>
+                            <td style="padding: 15px;">25.450.300</td>
+                            <td style="padding: 15px;">Dr. López</td>
+                            <td style="padding: 15px;">Cardiología</td>
+                            <td style="padding: 15px;">2026-06-12</td>
+                            <td style="padding: 15px;">09:00</td>
+                            <td style="padding: 15px;"><span class="badge badge-success">Confirmado</span></td>
+                            <td style="padding: 15px; text-align: center;">
+                                <button class="btn btn-sm" style="background: #667eea; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; margin-right: 5px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #ef4444; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr style="background: #f9fafb;">
+                            <td style="padding: 15px;"><strong>#T002</strong></td>
+                            <td style="padding: 15px;">María González López</td>
+                            <td style="padding: 15px;">28.123.456</td>
+                            <td style="padding: 15px;">Dra. García</td>
+                            <td style="padding: 15px;">Pediatría</td>
+                            <td style="padding: 15px;">2026-06-12</td>
+                            <td style="padding: 15px;">10:30</td>
+                            <td style="padding: 15px;"><span class="badge badge-info">Pendiente</span></td>
+                            <td style="padding: 15px; text-align: center;">
+                                <button class="btn btn-sm" style="background: #667eea; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; margin-right: 5px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #ef4444; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 15px;"><strong>#T003</strong></td>
+                            <td style="padding: 15px;">Carlos Martínez Silva</td>
+                            <td style="padding: 15px;">30.654.789</td>
+                            <td style="padding: 15px;">Dr. Rodríguez</td>
+                            <td style="padding: 15px;">Traumatología</td>
+                            <td style="padding: 15px;">2026-06-13</td>
+                            <td style="padding: 15px;">14:00</td>
+                            <td style="padding: 15px;"><span class="badge" style="background: #fed7d7; color: #742a2a;">Cancelado</span></td>
+                            <td style="padding: 15px; text-align: center;">
+                                <button class="btn btn-sm" style="background: #667eea; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; margin-right: 5px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #ef4444; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr style="background: #f9fafb;">
+                            <td style="padding: 15px;"><strong>#T004</strong></td>
+                            <td style="padding: 15px;">Ana Martínez Pérez</td>
+                            <td style="padding: 15px;">29.789.012</td>
+                            <td style="padding: 15px;">Dra. Martínez</td>
+                            <td style="padding: 15px;">Oftalmología</td>
+                            <td style="padding: 15px;">2026-06-14</td>
+                            <td style="padding: 15px;">11:00</td>
+                            <td style="padding: 15px;"><span class="badge badge-success">Confirmado</span></td>
+                            <td style="padding: 15px; text-align: center;">
+                                <button class="btn btn-sm" style="background: #667eea; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer; margin-right: 5px;">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm" style="background: #ef4444; color: white; padding: 6px 12px; border: none; border-radius: 5px; cursor: pointer;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Paciente - Hospital Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: white;
+            padding: 0;
+        }
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 250px;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            overflow-y: auto;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar-header i {
+            font-size: 1.8em;
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 1.3em;
+        }
+
+        .nav-section {
+            margin-bottom: 30px;
+        }
+
+        .nav-section-title {
+            font-size: 0.85em;
+            text-transform: uppercase;
+            opacity: 0.7;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-menu li {
+            margin-bottom: 8px;
+        }
+
+        .nav-menu a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 15px;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(5px);
+        }
+
+        .nav-menu i {
+            width: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-user-injured"></i>
+            <h2>Paciente</h2>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Mis Turnos</div>
+            <ul class="nav-menu">
+                <li><a href="asistencia.html" target="principal1"><i class="fas fa-calendar-check"></i> Mis Turnos</a></li>
+                <li><a href="horarios.html" target="principal1"><i class="fas fa-calendar-alt"></i> Reservar Turno</a></li>
+                <li><a href="faltas.html" target="principal1"><i class="fas fa-history"></i> Historial de Turnos</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Médicos</div>
+            <ul class="nav-menu">
+                <li><a href="materias.html" target="principal1"><i class="fas fa-stethoscope"></i> Ver Especialidades</a></li>
+                <li><a href="alumno.html" target="principal1"><i class="fas fa-user-md"></i> Mis Médicos</a></li>
+            </ul>
+        </div>
+
+        <div class="nav-section">
+            <div class="nav-section-title">Sistema</div>
+            <ul class="nav-menu">
+                <li><a href="inicio.html" target="_top"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

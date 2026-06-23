@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Turnos del Hospital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        header h1 i {
+            font-size: 1.2em;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h2 i {
+            color: #764ba2;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #667eea;
+            border: 2px solid #667eea;
+        }
+
+        .btn-secondary:hover {
+            background: #667eea;
+            color: white;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table thead {
+            background: #f8f9fa;
+        }
+
+        table th {
+            padding: 15px;
+            text-align: left;
+            color: #667eea;
+            font-weight: 600;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        table tr:hover {
+            background: #f8f9fa;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 5px;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .alert-info {
+            background: #e3f2fd;
+            color: #1976d2;
+            border-left: 4px solid #1976d2;
+        }
+
+        .alert-success {
+            background: #e8f5e9;
+            color: #388e3c;
+            border-left: 4px solid #388e3c;
+        }
+
+        .alert-warning {
+            background: #fff3e0;
+            color: #f57c00;
+            border-left: 4px solid #f57c00;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-clipboard-list"></i> Sistema de Asistencia Escolar</h1>
+            <p>Controla y registra la asistencia de tus estudiantes con facilidad.</p>
+        </header>
+
+        <div class="main-content">
+            <div class="card">
+                <h2><i class="fas fa-search"></i> Buscar Registro</h2>
+                <div class="input-group">
+                    <label for="buscar-alumno">Alumno</label>
+                    <input type="text" id="buscar-alumno" placeholder="Buscar por nombre o DNI">
+                </div>
+                <div class="input-group">
+                    <label for="buscar-materia">Materia</label>
+                    <input type="text" id="buscar-materia" placeholder="Buscar por materia">
+                </div>
+                <div class="button-group">
+                    <button class="btn-primary">Buscar</button>
+                    <button class="btn-secondary">Limpiar</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <h2><i class="fas fa-calendar-check"></i> Últimos Registros</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Alumno</th>
+                            <th>Materia</th>
+                            <th>Fecha</th>
+                            <th>Estado</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Juan García</td>
+                            <td>Matemática I</td>
+                            <td>15/05/2026</td>
+                            <td>Presente</td>
+                        </tr>
+                        <tr>
+                            <td>María López</td>
+                            <td>Lengua y Literatura</td>
+                            <td>15/05/2026</td>
+                            <td>Ausente</td>
+                        </tr>
+                        <tr>
+                            <td>Carlos Martínez</td>
+                            <td>Historia</td>
+                            <td>15/05/2026</td>
+                            <td>Presente</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="stats">
+            <div class="stat-box">
+                <span class="stat-number">95%</span>
+                <span class="stat-label">Asistencia General</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">12</span>
+                <span class="stat-label">Faltas del Día</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Justificadas</span>
+            </div>
+        </div>
+
+        <footer>
+            <p>Plataforma Escolar - Gestión de asistencia</p>
+        </footer>
+    </div>
+</body>
+</html>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-clipboard-check"></i>Sistema de Asistencia Escolar</h1>
+            <p>Gestión profesional de asistencia del estudiante</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Tarjeta de Registro de Asistencia -->
+            <div class="card">
+                <h2><i class="fas fa-user-check"></i>Registrar Asistencia</h2>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Registra la asistencia de los estudiantes</span>
+                </div>
+                <div class="input-group">
+                    <label for="alumno">Seleccionar Alumno</label>
+                    <select id="alumno">
+                        <option value="">-- Selecciona un alumno --</option>
+                        <option value="1">Juan García</option>
+                        <option value="2">María López</option>
+                        <option value="3">Carlos Martínez</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" id="fecha">
+                </div>
+                <div class="input-group">
+                    <label for="estado">Estado</label>
+                    <select id="estado">
+                        <option value="">-- Selecciona estado --</option>
+                        <option value="presente">Presente</option>
+                        <option value="ausente">Ausente</option>
+                        <option value="tarde">Tarde</option>
+                        <option value="justificado">Justificado</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button class="btn-primary"><i class="fas fa-save"></i> Guardar</button>
+                    <button class="btn-secondary"><i class="fas fa-times"></i> Cancelar</button>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Consulta -->
+            <div class="card">
+                <h2><i class="fas fa-search"></i>Consultar Asistencia</h2>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Revisa registros de asistencia anteriores</span>
+                </div>
+                <div class="input-group">
+                    <label for="filtro-alumno">Filtrar por Alumno</label>
+                    <input type="text" id="filtro-alumno" placeholder="Ingresa nombre o ID">
+                </div>
+                <div class="input-group">
+                    <label for="filtro-mes">Mes</label>
+                    <select id="filtro-mes">
+                        <option value="">Todos los meses</option>
+                        <option value="enero">Enero</option>
+                        <option value="febrero">Febrero</option>
+                        <option value="marzo">Marzo</option>
+                    </select>
+                </div>
+                <div class="button-group">
+                    <button class="btn-primary"><i class="fas fa-filter"></i> Buscar</button>
+                    <button class="btn-secondary"><i class="fas fa-download"></i> Descargar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estadísticas -->
+        <div class="card">
+            <h2><i class="fas fa-chart-bar"></i>Estadísticas de Asistencia</h2>
+            <div class="stats">
+                <div class="stat-box">
+                    <span class="stat-number">325</span>
+                    <span class="stat-label">Asistencias</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">12</span>
+                    <span class="stat-label">Ausencias</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-number">95.4%</span>
+                    <span class="stat-label">Tasa de Asistencia</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabla de Registros Recientes -->
+        <div class="card">
+            <h2><i class="fas fa-list"></i>Registros Recientes</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Estudiante</th>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Juan García</td>
+                        <td>02/06/2026</td>
+                        <td><span style="background: #e8f5e9; color: #388e3c; padding: 5px 10px; border-radius: 5px;">Presente</span></td>
+                        <td><button class="btn-secondary" style="width: auto; padding: 5px 10px;"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>María López</td>
+                        <td>02/06/2026</td>
+                        <td><span style="background: #fff3e0; color: #f57c00; padding: 5px 10px; border-radius: 5px;">Tarde</span></td>
+                        <td><button class="btn-secondary" style="width: auto; padding: 5px 10px;"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td>Carlos Martínez</td>
+                        <td>01/06/2026</td>
+                        <td><span style="background: #ffebee; color: #c62828; padding: 5px 10px; border-radius: 5px;">Ausente</span></td>
+                        <td><button class="btn-secondary" style="width: auto; padding: 5px 10px;"><i class="fas fa-edit"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Sistema Escolar. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+</body>
+</html>

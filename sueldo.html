@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Asistencia - Hospital Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-file-alt"></i> Reporte de Asistencia de Médicos</h2>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <span>Control y reporte de asistencia del personal médico</span>
+            </div>
+
+            <div class="grid grid-2" style="margin-bottom: 30px;">
+                <div class="form-group">
+                    <label for="empleado"><i class="fas fa-user-md"></i> Seleccionar Médico</label>
+                    <select id="empleado">
+                        <option>-- Selecciona médico --</option>
+                        <option>Dr. López - Cardiología</option>
+                        <option>Dra. García - Pediatría</option>
+                        <option>Dr. Rodríguez - Traumatología</option>
+                        <option>Dra. Martínez - Oftalmología</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="mes"><i class="fas fa-calendar"></i> Mes</label>
+                    <select id="mes">
+                        <option>Junio 2026</option>
+                        <option>Mayo 2026</option>
+                        <option>Abril 2026</option>
+                        <option>Marzo 2026</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="btn-primary" style="margin-bottom: 20px;">
+                <i class="fas fa-search"></i> Buscar
+            </button>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Empleado</th>
+                        <th>Cargo</th>
+                        <th>Sueldo Base</th>
+                        <th>Bonificaciones</th>
+                        <th>Descuentos</th>
+                        <th>Total a Pagar</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Dr. López</td>
+                        <td>Docente</td>
+                        <td>$5,000</td>
+                        <td>$500</td>
+                        <td>-$200</td>
+                        <td><strong style="color: #667eea;">$5,300</strong></td>
+                        <td><span class="badge badge-success">Pagado</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm" style="background: #48bb78; color: white;">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Dra. García</td>
+                        <td>Docente</td>
+                        <td>$5,200</td>
+                        <td>$600</td>
+                        <td>-$300</td>
+                        <td><strong style="color: #667eea;">$5,500</strong></td>
+                        <td><span class="badge badge-success">Pagado</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm" style="background: #48bb78; color: white;">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Prof. Martínez</td>
+                        <td>Docente</td>
+                        <td>$4,800</td>
+                        <td>$400</td>
+                        <td>-$150</td>
+                        <td><strong style="color: #667eea;">$5,050</strong></td>
+                        <td><span class="badge badge-warning">Pendiente</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn btn-sm" style="background: #ed8936; color: white;">
+                                <i class="fas fa-clock"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px;">
+                <div class="stats">
+                    <div class="stat-box">
+                        <span class="stat-number">$15,850</span>
+                        <span class="stat-label">Total de Sueldos</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Pagados</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Pendientes</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

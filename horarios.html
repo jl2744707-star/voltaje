@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horarios de Disponibilidad - Hospital Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-calendar-alt"></i> Horarios de Disponibilidad</h2>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <span>Horarios de disponibilidad de médicos para asignación de turnos</span>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <label for="curso" style="display: inline-block; margin-right: 15px;">
+                    <i class="fas fa-user-md"></i> Seleccionar Médico:
+                </label>
+                <select id="curso" style="width: auto; display: inline-block;">
+                    <option>Dr. López - Cardiología</option>
+                    <option>Dra. García - Pediatría</option>
+                    <option>Dr. Rodríguez - Traumatología</option>
+                    <option>Dra. Martínez - Oftalmología</option>
+                </select>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hora</th>
+                        <th>Lunes</th>
+                        <th>Martes</th>
+                        <th>Miércoles</th>
+                        <th>Jueves</th>
+                        <th>Viernes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>08:00 - 09:00</strong></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>0/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>1/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>2/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>0/3 turnos</small></span></td>
+                        <td><span style="background: #fed7d7; padding: 8px; border-radius: 5px; display: block;">Lleno<br><small>3/3 turnos</small></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>09:00 - 10:00</strong></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>1/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>0/3 turnos</small></span></td>
+                        <td><span style="background: #fed7d7; padding: 8px; border-radius: 5px; display: block;">Lleno<br><small>3/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>2/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>1/3 turnos</small></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>10:00 - 10:15</strong></td>
+                        <td colspan="5" style="text-align: center; background: #f8f9fa;"><strong>DESCANSO</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>10:15 - 11:15</strong></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>0/3 turnos</small></span></td>
+                        <td><span style="background: #fed7d7; padding: 8px; border-radius: 5px; display: block;">Lleno<br><small>3/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>1/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>2/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>0/3 turnos</small></span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>11:15 - 12:15</strong></td>
+                        <td><span style="background: #fed7d7; padding: 8px; border-radius: 5px; display: block;">Lleno<br><small>3/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>1/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>0/3 turnos</small></span></td>
+                        <td><span style="background: #fed7d7; padding: 8px; border-radius: 5px; display: block;">Lleno<br><small>3/3 turnos</small></span></td>
+                        <td><span style="background: #c6f6d5; padding: 8px; border-radius: 5px; display: block;">Disponible<br><small>2/3 turnos</small></span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div style="margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">Leyenda de Estado</h3>
+                <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                    <div><span style="background: #c6f6d5; padding: 5px 10px; border-radius: 5px;">Disponible</span></div>
+                    <div><span style="background: #fed7d7; padding: 5px 10px; border-radius: 5px;">Lleno</span></div>
+                    <div><span style="background: #fef3c7; padding: 5px 10px; border-radius: 5px;">Próximo a Llenar</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

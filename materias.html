@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades Médicas - Hospital Central</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2><i class="fas fa-stethoscope"></i> Especialidades Médicas</h2>
+            
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i>
+                <span>Gestiona las especialidades médicas disponibles en el hospital</span>
+            </div>
+
+            <div style="margin-bottom: 30px; display: flex; gap: 10px;">
+                <input type="text" placeholder="Buscar especialidad..." style="flex: 1;">
+                <button class="btn-primary">
+                    <i class="fas fa-search"></i> Buscar
+                </button>
+                <button class="btn-primary">
+                    <i class="fas fa-plus"></i> Nueva Especialidad
+                </button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Especialidad</th>
+                        <th>Médico Responsable</th>
+                        <th>Descripción</th>
+                        <th>Turnos Diarios</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>ESP001</td>
+                        <td>Cardiología</td>
+                        <td>Dr. López</td>
+                        <td>Enfermedades del corazón</td>
+                        <td>5</td>
+                        <td><span class="badge badge-success">Activo</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>LEN001</td>
+                        <td>Lengua y Literatura</td>
+                        <td>Dra. García</td>
+                        <td>1º Año</td>
+                        <td>3</td>
+                        <td><span class="badge badge-success">Activo</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>HIS001</td>
+                        <td>Historia</td>
+                        <td>Prof. Martínez</td>
+                        <td>1º Año</td>
+                        <td>3</td>
+                        <td><span class="badge badge-success">Activo</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>BIO001</td>
+                        <td>Biología</td>
+                        <td>Ing. Rodríguez</td>
+                        <td>2º Año</td>
+                        <td>4</td>
+                        <td><span class="badge badge-success">Activo</span></td>
+                        <td>
+                            <button class="btn btn-sm" style="background: #667eea; color: white; margin-right: 5px;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
